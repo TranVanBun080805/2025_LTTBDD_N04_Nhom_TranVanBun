@@ -50,7 +50,10 @@ class AuthWelcomeScreen extends StatelessWidget {
           children: [
             // 🔹 Tiêu đề chính giữa màn hình
             Align(
-              alignment: const Alignment(0, -0.5),
+              alignment: const Alignment(
+                0,
+                -0.30,
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -71,11 +74,35 @@ class AuthWelcomeScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize:
-                          size.width * 0.038,
+                          size.width * 0.035,
                       height: 1.3,
                       color: Colors.white
                           .withOpacity(0.85),
                     ),
+                  ),
+                  const SizedBox(height: 40),
+                  LayoutBuilder(
+                    builder:
+                        (context, constraints) {
+                          final screenHeight =
+                              MediaQuery.sizeOf(
+                                context,
+                              ).height;
+                          final logoHeight =
+                              screenHeight * 0.45;
+                          final logoWidth =
+                              constraints
+                                  .maxWidth *
+                              0.65;
+                          return Image.asset(
+                            'imgs/LogoMobile.png',
+                            height: logoHeight
+                                .clamp(120, 220),
+                            width: logoWidth
+                                .clamp(140, 260),
+                            fit: BoxFit.contain,
+                          );
+                        },
                   ),
                 ],
               ),
@@ -168,13 +195,17 @@ class _BottomSwitcherState
                   ),
                   decoration: BoxDecoration(
                     color: _hoverSignIn
-                        ? Colors.white
-                              .withOpacity(0.15)
+                        ? const Color.fromARGB(
+                            255,
+                            255,
+                            255,
+                            255,
+                          ).withOpacity(0.15)
                         : const Color.fromARGB(
                             0,
-                            253,
-                            253,
-                            253,
+                            207,
+                            68,
+                            68,
                           ),
                   ),
                   alignment: Alignment.center,
@@ -234,7 +265,12 @@ class _BottomSwitcherState
                           ? const Color(
                               0xFF1E2A78,
                             )
-                          : Colors.white,
+                          : const Color.fromARGB(
+                              255,
+                              255,
+                              255,
+                              255,
+                            ),
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
                     ),

@@ -34,9 +34,9 @@ class WaveBackground extends StatelessWidget {
           diameter: 42,
         ),
         const _Bubble(
-          left: 120,
+          left: 50,
           bottom: 120,
-          diameter: 110,
+          diameter: 80,
         ),
 
         // Nội dung của từng màn hình

@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import '../../widgets/background.dart';
 import '../../widgets/custom_button.dart';
 import 'register_screen.dart';
+import '../home/home_screen.dart';
+
+final User = {
+  'email': 'Tranbun05@gmail.com',
+  'password': '12345678',
+};
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -112,7 +118,7 @@ class _LoginScreenState
                               passwordController,
                           obscureText: true,
                           decoration: _inputStyle(
-                            "Password",
+                            "Mật khẩu",
                             "Nhập mật khẩu",
                           ),
                         ),
@@ -181,7 +187,55 @@ class _LoginScreenState
                                     ),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              final email =
+                                  emailController
+                                      .text
+                                      .toUpperCase()
+                                      .trim();
+                              final password =
+                                  passwordController
+                                      .text
+                                      .trim();
+
+                              if (email ==
+                                      User['email']
+                                          ?.toUpperCase() &&
+                                  password ==
+                                      User['password']) {
+                                // Đăng nhập thành công
+                                ScaffoldMessenger.of(
+                                  context,
+                                ).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      'Đăng nhập thành công!',
+                                    ),
+                                  ),
+                                );
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (
+                                          context,
+                                        ) =>
+                                            const homeScreen(),
+                                  ),
+                                );
+                              } else {
+                                // Đăng nhập thất bại
+                                ScaffoldMessenger.of(
+                                  context,
+                                ).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      'Email hoặc mật khẩu không đúng.',
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
                             child: const Text(
                               "Đăng nhập",
                               style: TextStyle(
