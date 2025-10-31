@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// 🌊 Nền gradient + sóng + bóng tròn, có thể tái sử dụng toàn app
 class WaveBackground extends StatelessWidget {
   final Widget? child;
   const WaveBackground({super.key, this.child});
@@ -9,14 +8,11 @@ class WaveBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Vẽ nền gradient và sóng
         Positioned.fill(
           child: CustomPaint(
             painter: _WavesPainter(),
           ),
         ),
-
-        // Các bong bóng trang trí (đặt chung ở đây)
         const _Bubble(
           left: -18,
           top: 8,
@@ -38,21 +34,17 @@ class WaveBackground extends StatelessWidget {
           bottom: 120,
           diameter: 80,
         ),
-
-        // Nội dung của từng màn hình
         if (child != null) child!,
       ],
     );
   }
 }
 
-/// 🎨 Vẽ nền gradient + các đường sóng
 class _WavesPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
 
-    // Nền gradient
     final base = Paint()
       ..shader = const LinearGradient(
         begin: Alignment.topLeft,
@@ -64,7 +56,6 @@ class _WavesPainter extends CustomPainter {
       ).createShader(rect);
     canvas.drawRect(rect, base);
 
-    // Sóng 1
     final wave1 = Paint()
       ..color = const Color(0x334B6CA7);
     final p2 = Path()
@@ -86,7 +77,6 @@ class _WavesPainter extends CustomPainter {
       ..close();
     canvas.drawPath(p2, wave1);
 
-    // Sóng 2
     final wave2 = Paint()
       ..color = const Color(0x33405C8C);
     final p3 = Path()
@@ -115,7 +105,6 @@ class _WavesPainter extends CustomPainter {
   ) => false;
 }
 
-/// 🔵 Bubble tròn có gradient + đổ bóng (đặt chung trong nền)
 class _Bubble extends StatelessWidget {
   const _Bubble({
     super.key,
