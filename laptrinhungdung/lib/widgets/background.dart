@@ -159,3 +159,5 @@ class _Bubble extends StatelessWidget {
     );
   }
 }
+// --- IGNORE ---
+// End of background.dart

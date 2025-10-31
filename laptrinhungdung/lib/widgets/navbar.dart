@@ -124,3 +124,4 @@ class Navbar extends StatelessWidget {
     );
   }
 }
+// End of navbar.dart
