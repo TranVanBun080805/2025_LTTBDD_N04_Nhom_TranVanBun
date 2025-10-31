@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'register_screen.dart';
-import '../../widgets/background.dart'; // import WaveBackground
+import '../../widgets/background.dart';
 
 class AuthWelcomeScreen extends StatelessWidget {
   const AuthWelcomeScreen({super.key});
 
-  // 👉 Hiệu ứng chuyển trang trượt ngang
   void _slideTo(
     BuildContext context,
     Widget page, {
@@ -45,10 +44,8 @@ class AuthWelcomeScreen extends StatelessWidget {
 
     return Scaffold(
       body: WaveBackground(
-        // 🌊 Nền + bóng tròn chung
         child: Stack(
           children: [
-            // 🔹 Tiêu đề chính giữa màn hình
             Align(
               alignment: const Alignment(
                 0,
@@ -107,8 +104,6 @@ class AuthWelcomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-            // 🔹 Thanh nút dưới cùng (Đăng nhập / Đăng ký)
             Positioned(
               left: 0,
               right: 0,
@@ -169,7 +164,6 @@ class _BottomSwitcherState
       clipBehavior: Clip.antiAlias,
       child: Row(
         children: [
-          // 🔸 Nút Đăng Nhập
           Expanded(
             child: MouseRegion(
               onEnter: (_) => setState(
@@ -195,18 +189,9 @@ class _BottomSwitcherState
                   ),
                   decoration: BoxDecoration(
                     color: _hoverSignIn
-                        ? const Color.fromARGB(
-                            255,
-                            255,
-                            255,
-                            255,
-                          ).withOpacity(0.15)
-                        : const Color.fromARGB(
-                            0,
-                            207,
-                            68,
-                            68,
-                          ),
+                        ? Colors.white
+                              .withOpacity(0.15)
+                        : Colors.transparent,
                   ),
                   alignment: Alignment.center,
                   child: const Text(
@@ -221,8 +206,6 @@ class _BottomSwitcherState
               ),
             ),
           ),
-
-          // 🔸 Nút Đăng Ký
           Expanded(
             child: MouseRegion(
               onEnter: (_) => setState(
@@ -265,12 +248,7 @@ class _BottomSwitcherState
                           ? const Color(
                               0xFF1E2A78,
                             )
-                          : const Color.fromARGB(
-                              255,
-                              255,
-                              255,
-                              255,
-                            ),
+                          : Colors.white,
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
                     ),

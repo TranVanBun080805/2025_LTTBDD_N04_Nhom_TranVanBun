@@ -31,7 +31,6 @@ class _LoginScreenState
         child: SafeArea(
           child: Stack(
             children: [
-              // 🔹 Nút quay lại
               Positioned(
                 top: 16,
                 left: 16,
@@ -55,11 +54,8 @@ class _LoginScreenState
                   ),
                 ),
               ),
-
-              // 🔹 Form đăng nhập
               Positioned.fill(
-                top:
-                    120, // giữ khoảng cách cho phần nền sóng + nút back
+                top: 120,
                 child: Container(
                   padding:
                       const EdgeInsets.symmetric(
@@ -98,8 +94,6 @@ class _LoginScreenState
                         const SizedBox(
                           height: 24,
                         ),
-
-                        // 👉 Email
                         TextField(
                           controller:
                               emailController,
@@ -111,8 +105,6 @@ class _LoginScreenState
                         const SizedBox(
                           height: 16,
                         ),
-
-                        // 👉 Password
                         TextField(
                           controller:
                               passwordController,
@@ -125,8 +117,6 @@ class _LoginScreenState
                         const SizedBox(
                           height: 12,
                         ),
-
-                        // 👉 Checkbox lưu mật khẩu
                         Row(
                           children: [
                             Checkbox(
@@ -166,8 +156,6 @@ class _LoginScreenState
                         const SizedBox(
                           height: 20,
                         ),
-
-                        // 👉 Nút đăng nhập
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -203,16 +191,6 @@ class _LoginScreenState
                                           ?.toUpperCase() &&
                                   password ==
                                       User['password']) {
-                                // Đăng nhập thành công
-                                ScaffoldMessenger.of(
-                                  context,
-                                ).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                      'Đăng nhập thành công!',
-                                    ),
-                                  ),
-                                );
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
@@ -220,11 +198,10 @@ class _LoginScreenState
                                         (
                                           context,
                                         ) =>
-                                            const homeScreen(),
+                                            const HomeScreen(),
                                   ),
                                 );
                               } else {
-                                // Đăng nhập thất bại
                                 ScaffoldMessenger.of(
                                   context,
                                 ).showSnackBar(
@@ -252,7 +229,6 @@ class _LoginScreenState
                         const SizedBox(
                           height: 24,
                         ),
-
                         const Center(
                           child: Text(
                             "Đăng nhập với",
@@ -266,8 +242,6 @@ class _LoginScreenState
                         const SizedBox(
                           height: 14,
                         ),
-
-                        // 👉 Social icons
                         Row(
                           mainAxisAlignment:
                               MainAxisAlignment
@@ -290,8 +264,6 @@ class _LoginScreenState
                         const SizedBox(
                           height: 22,
                         ),
-
-                        // 👉 Link đăng ký
                         Row(
                           mainAxisAlignment:
                               MainAxisAlignment
@@ -364,7 +336,6 @@ class _LoginScreenState
     );
   }
 
-  // ==== Style cho ô nhập ====
   InputDecoration _inputStyle(
     String label,
     String hint,
@@ -400,7 +371,6 @@ class _LoginScreenState
     );
   }
 
-  // ==== Icon mạng xã hội ====
   Widget _socialIcon(String path) {
     return Padding(
       padding: const EdgeInsets.symmetric(

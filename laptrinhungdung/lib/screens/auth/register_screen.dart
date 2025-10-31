@@ -26,7 +26,6 @@ class _RegisterScreenState
         child: SafeArea(
           child: Stack(
             children: [
-              // 🔹 Nút quay lại
               Positioned(
                 top: 16,
                 left: 16,
@@ -50,11 +49,8 @@ class _RegisterScreenState
                   ),
                 ),
               ),
-
-              // 🔹 Form trắng dính sát đáy màn hình
               Positioned.fill(
-                top:
-                    100, // chừa phần trên để hiển thị nền sóng + nút back
+                top: 100,
                 child: Container(
                   padding:
                       const EdgeInsets.symmetric(
@@ -93,8 +89,6 @@ class _RegisterScreenState
                         const SizedBox(
                           height: 24,
                         ),
-
-                        // Ô nhập Họ tên
                         TextField(
                           controller:
                               fullNameController,
@@ -106,8 +100,6 @@ class _RegisterScreenState
                         const SizedBox(
                           height: 16,
                         ),
-
-                        // Ô nhập Email
                         TextField(
                           controller:
                               emailController,
@@ -122,8 +114,6 @@ class _RegisterScreenState
                         const SizedBox(
                           height: 16,
                         ),
-
-                        // Ô nhập Mật khẩu
                         TextField(
                           controller:
                               passwordController,
@@ -136,8 +126,6 @@ class _RegisterScreenState
                         const SizedBox(
                           height: 16,
                         ),
-
-                        // Checkbox điều khoản
                         Row(
                           children: [
                             Checkbox(
@@ -189,8 +177,6 @@ class _RegisterScreenState
                         const SizedBox(
                           height: 10,
                         ),
-
-                        // 🔹 Nút đăng ký
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -244,8 +230,6 @@ class _RegisterScreenState
                         const SizedBox(
                           height: 24,
                         ),
-
-                        // 🔹 Social icons
                         const Center(
                           child: Text(
                             "Đăng ký với",
@@ -259,7 +243,6 @@ class _RegisterScreenState
                         const SizedBox(
                           height: 14,
                         ),
-
                         Row(
                           mainAxisAlignment:
                               MainAxisAlignment
@@ -282,8 +265,6 @@ class _RegisterScreenState
                         const SizedBox(
                           height: 22,
                         ),
-
-                        // 🔹 Link đăng nhập
                         Row(
                           mainAxisAlignment:
                               MainAxisAlignment
@@ -363,7 +344,6 @@ class _RegisterScreenState
     );
   }
 
-  // ==== Style cho TextField ====
   InputDecoration _inputStyle(
     String label,
     String hint,
@@ -399,7 +379,6 @@ class _RegisterScreenState
     );
   }
 
-  // ==== Icon mạng xã hội ====
   Widget _socialIcon(String path) {
     return Padding(
       padding: const EdgeInsets.symmetric(
