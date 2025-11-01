@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'auth/AuthWelcomeScreen.dart';
+import 'introduce.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -21,8 +22,7 @@ class _LoadingScreenState
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (_) =>
-                const AuthWelcomeScreen(),
+            builder: (_) => const IntroScreen(),
           ),
         );
       },
@@ -48,7 +48,7 @@ class _LoadingScreenState
               height: 150,
             ),
             const SizedBox(height: 20),
-            Text( 
+            Text(
               'Quản Lý Chi Tiêu',
               style: TextStyle(
                 fontSize: 24,
