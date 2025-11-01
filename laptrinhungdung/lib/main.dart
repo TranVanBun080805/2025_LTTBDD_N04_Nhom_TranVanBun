@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/auth/login_screen.dart';
 import 'utils/colors.dart';
 import 'screens/auth/AuthWelcomeScreen.dart';
+import 'screens/load.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const AuthWelcomeScreen(),
+      home: const LoadingScreen(),
     );
   }
 }
