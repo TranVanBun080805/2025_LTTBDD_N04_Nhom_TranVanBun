@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../widgets/navbar.dart';
+import 'dashboard_screen.dart';
+import 'statistic_screen.dart';
+import 'profile_screen.dart';
+import 'setting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,18 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
 
   final List<Widget> pages = const [
-    Center(
-      child: Text(
-        'Trang chủ - Quản lý chi tiêu!',
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    ),
-    Center(child: Text('Thống kê chi tiêu')),
-    Center(child: Text('Trang cá nhân')),
-    Center(child: Text('Cài đặt ứng dụng')),
+    DashboardScreen(),
+    StatisticScreen(),
+    ProfileScreen(),
+    SettingScreen(),
   ];
 
   void handleAdd() {
@@ -42,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         content: const Text(
           "Thêm giao dịch mới!",
         ),
-        duration: const Duration(seconds: 2),
+        duration: Duration(seconds: 2),
       ),
     );
   }
