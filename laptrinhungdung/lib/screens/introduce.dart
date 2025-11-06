@@ -292,8 +292,8 @@ class _IntroScreenState
                                     currentPage ==
                                             pages.length -
                                                 1
-                                        ? 'Get Started'
-                                        : 'Next',
+                                        ? 'Bắt đầu'
+                                        : 'Tiếp theo',
                                     style: const TextStyle(
                                       color: Colors
                                           .white,
