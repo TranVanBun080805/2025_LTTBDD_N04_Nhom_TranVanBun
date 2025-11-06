@@ -4,8 +4,11 @@ import 'auth/AuthWelcomeScreen.dart';
 import 'introduce.dart';
 
 class LoadingScreen extends StatefulWidget {
-  const LoadingScreen({super.key});
-
+  final Function(Locale)? onLocaleChange;
+  const LoadingScreen({
+    super.key,
+    this.onLocaleChange,
+  });
   @override
   State<LoadingScreen> createState() =>
       _LoadingScreenState();
