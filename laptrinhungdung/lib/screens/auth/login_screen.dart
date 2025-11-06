@@ -23,6 +23,7 @@ class _LoginScreenState
   final passwordController =
       TextEditingController();
   bool rememberMe = false;
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -108,11 +109,36 @@ class _LoginScreenState
                         TextField(
                           controller:
                               passwordController,
-                          obscureText: true,
-                          decoration: _inputStyle(
-                            "Mật khẩu",
-                            "Nhập mật khẩu",
-                          ),
+                          obscureText:
+                              _obscurePassword,
+                          decoration:
+                              _inputStyle(
+                                "Mật khẩu",
+                                "Nhập mật khẩu",
+                              ).copyWith(
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _obscurePassword
+                                        ? Icons
+                                              .visibility_off
+                                        : Icons
+                                              .visibility,
+                                    color:
+                                        _obscurePassword
+                                        ? Colors
+                                              .grey
+                                        : const Color(
+                                            0xFF1E2A78,
+                                          ),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _obscurePassword =
+                                          !_obscurePassword;
+                                    });
+                                  },
+                                ),
+                              ),
                         ),
                         const SizedBox(
                           height: 12,
@@ -121,13 +147,14 @@ class _LoginScreenState
                           children: [
                             Checkbox(
                               value: rememberMe,
-                              onChanged: (val) =>
-                                  setState(
-                                    () =>
-                                        rememberMe =
-                                            val ??
-                                            false,
-                                  ),
+                              onChanged:
+                                  (bool? val) {
+                                    setState(() {
+                                      rememberMe =
+                                          val ??
+                                          false;
+                                    });
+                                  },
                               activeColor:
                                   const Color(
                                     0xFF1E2A78,
@@ -310,15 +337,20 @@ class _LoginScreenState
                                   ),
                                 );
                               },
-                              child: const Text(
-                                "Đăng ký",
-                                style: TextStyle(
-                                  color: Color(
-                                    0xFF1E2A78,
+                              child: MouseRegion(
+                                cursor:
+                                    SystemMouseCursors
+                                        .click,
+                                child: const Text(
+                                  "Đăng ký",
+                                  style: TextStyle(
+                                    color: Color(
+                                      0xFF1E2A78,
+                                    ),
+                                    fontWeight:
+                                        FontWeight
+                                            .w600,
                                   ),
-                                  fontWeight:
-                                      FontWeight
-                                          .w600,
                                 ),
                               ),
                             ),
@@ -357,9 +389,11 @@ class _LoginScreenState
           color: Colors.grey.shade300,
         ),
       ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
+      focusedBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
+        borderSide: BorderSide(
           color: Color(0xFF1E2A78),
           width: 1.6,
         ),
