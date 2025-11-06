@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../widgets/background.dart';
 import 'login_screen.dart';
+import '../../controllers/regesterController.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -12,13 +13,8 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState
     extends State<RegisterScreen> {
-  final fullNameController =
-      TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController =
-      TextEditingController();
-  bool agreePolicy = false;
-
+  final Regestercontroller registerController =
+      Regestercontroller();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +87,8 @@ class _RegisterScreenState
                         ),
                         TextField(
                           controller:
-                              fullNameController,
+                              registerController
+                                  .fulllNameController,
                           decoration: _inputStyle(
                             "Tên đầy đủ",
                             "Nhập tên của bạn",
@@ -102,7 +99,8 @@ class _RegisterScreenState
                         ),
                         TextField(
                           controller:
-                              emailController,
+                              registerController
+                                  .emailController,
                           keyboardType:
                               TextInputType
                                   .emailAddress,
@@ -116,7 +114,8 @@ class _RegisterScreenState
                         ),
                         TextField(
                           controller:
-                              passwordController,
+                              registerController
+                                  .passwordController,
                           obscureText: true,
                           decoration: _inputStyle(
                             "Mật khẩu",
@@ -129,7 +128,9 @@ class _RegisterScreenState
                         Row(
                           children: [
                             Checkbox(
-                              value: agreePolicy,
+                              value:
+                                  registerController
+                                      .agreePolicy,
                               activeColor:
                                   const Color(
                                     0xFF1E2A78,
@@ -137,7 +138,8 @@ class _RegisterScreenState
                               onChanged: (val) =>
                                   setState(
                                     () =>
-                                        agreePolicy =
+                                        registerController
+                                                .agreePolicy =
                                             val ??
                                             false,
                                   ),
@@ -196,23 +198,11 @@ class _RegisterScreenState
                                     ),
                               ),
                             ),
-                            onPressed: () {
-                              ScaffoldMessenger.of(
-                                context,
-                              ).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    "Đăng ký thành công (demo)!",
-                                  ),
-                                ),
-                              );
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) =>
-                                      const LoginScreen(),
-                                ),
-                              );
+                            onPressed: () async {
+                              await registerController
+                                  .register(
+                                    context,
+                                  );
                             },
                             child: const Text(
                               "Đăng ký",
@@ -315,15 +305,20 @@ class _RegisterScreenState
                                   ),
                                 );
                               },
-                              child: const Text(
-                                "Đăng nhập",
-                                style: TextStyle(
-                                  color: Color(
-                                    0xFF1E2A78,
+                              child: MouseRegion(
+                                cursor:
+                                    SystemMouseCursors
+                                        .click,
+                                child: const Text(
+                                  "Đăng nhập",
+                                  style: TextStyle(
+                                    color: Color(
+                                      0xFF1E2A78,
+                                    ),
+                                    fontWeight:
+                                        FontWeight
+                                            .w600,
                                   ),
-                                  fontWeight:
-                                      FontWeight
-                                          .w600,
                                 ),
                               ),
                             ),
@@ -403,5 +398,15 @@ class _RegisterScreenState
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    registerController.fulllNameController
+        .dispose();
+    registerController.emailController.dispose();
+    registerController.passwordController
+        .dispose();
+    super.dispose();
   }
 }
