@@ -1,0 +1,12 @@
+{
+  "welcome": "Welcome",
+  "email": "Email",
+  "password": "Password",
+  "login": "Login",
+  "register": "Register",
+  "remember_me": "Remember me",
+  "forgot_password": "Forgot password?",
+  "login_with": "Login with",
+  "no_account": "Don't have an account?",
+  "invalid_credentials": "Invalid email or password."
+}
