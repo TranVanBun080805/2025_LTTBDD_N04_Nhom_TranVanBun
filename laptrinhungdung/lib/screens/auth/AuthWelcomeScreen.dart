@@ -92,7 +92,7 @@ class AuthWelcomeScreen extends StatelessWidget {
                                   .maxWidth *
                               0.65;
                           return Image.asset(
-                            'imgs/LogoMobile.png',
+                            'imgs/logoMobile.png',
                             height: logoHeight
                                 .clamp(120, 220),
                             width: logoWidth
