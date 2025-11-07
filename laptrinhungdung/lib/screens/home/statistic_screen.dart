@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../controllers/incomeProvider.dart';
 import '../../controllers/categoryProvider.dart';
 import 'package:intl/intl.dart';
@@ -30,7 +31,7 @@ class StatisticScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text("Thống kê tài chính"),
+        title: Text("financial_statistics".tr()),
         centerTitle: true,
         backgroundColor: const Color(0xFF3A7BD5),
         foregroundColor: Colors.white,
@@ -49,10 +50,9 @@ class StatisticScreen extends StatelessWidget {
               formatter,
             ),
             const SizedBox(height: 25),
-
-            const Text(
-              "Tỷ lệ chi tiêu theo danh mục",
-              style: TextStyle(
+            Text(
+              "spending_ratio_by_category".tr(),
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -60,10 +60,9 @@ class StatisticScreen extends StatelessWidget {
             const SizedBox(height: 14),
             _buildPieChart(categoryProvider),
             const SizedBox(height: 30),
-
-            const Text(
-              "Chi tiêu từng danh mục",
-              style: TextStyle(
+            Text(
+              "expense_by_category".tr(),
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -73,7 +72,6 @@ class StatisticScreen extends StatelessWidget {
               categoryProvider,
               formatter,
             ),
-
             const SizedBox(height: 100),
           ],
         ),
@@ -81,7 +79,6 @@ class StatisticScreen extends StatelessWidget {
     );
   }
 
-  // 🧾 Thẻ tổng quan thu - chi - dư
   Widget _buildSummaryCard(
     double income,
     double expense,
@@ -118,13 +115,13 @@ class StatisticScreen extends StatelessWidget {
             children: [
               _buildSummaryTile(
                 Icons.trending_up,
-                "Thu nhập",
+                "income".tr(),
                 formatter.format(income),
                 Colors.greenAccent,
               ),
               _buildSummaryTile(
                 Icons.trending_down,
-                "Chi tiêu",
+                "expense".tr(),
                 formatter.format(expense),
                 Colors.redAccent,
               ),
@@ -138,7 +135,7 @@ class StatisticScreen extends StatelessWidget {
           const SizedBox(height: 14),
           _buildSummaryTile(
             Icons.account_balance_wallet,
-            "Số dư",
+            "balance".tr(),
             formatter.format(balance),
             Colors.white,
           ),
@@ -177,7 +174,6 @@ class StatisticScreen extends StatelessWidget {
     );
   }
 
-  // 🥧 Biểu đồ tròn (tỷ lệ chi tiêu)
   Widget _buildPieChart(
     CategoryProvider provider,
   ) {
@@ -189,7 +185,7 @@ class StatisticScreen extends StatelessWidget {
 
     if (totalExpense == 0) {
       return _buildEmptyPlaceholder(
-        "Chưa có dữ liệu chi tiêu",
+        "no_expense_data".tr(),
       );
     }
 
@@ -251,7 +247,6 @@ class StatisticScreen extends StatelessWidget {
     );
   }
 
-  // 📊 Biểu đồ cột + danh sách chi tiết
   Widget _buildBarChart(
     CategoryProvider provider,
     NumberFormat formatter,
@@ -260,7 +255,7 @@ class StatisticScreen extends StatelessWidget {
 
     if (categories.isEmpty) {
       return _buildEmptyPlaceholder(
-        "Chưa có danh mục chi tiêu nào",
+        "no_category_data".tr(),
       );
     }
 
@@ -352,12 +347,11 @@ class StatisticScreen extends StatelessWidget {
               ),
             ),
           );
-        }).toList(),
+        }),
       ],
     );
   }
 
-  // 🪶 Hiển thị khi không có dữ liệu
   Widget _buildEmptyPlaceholder(String text) {
     return Container(
       padding: const EdgeInsets.all(20),

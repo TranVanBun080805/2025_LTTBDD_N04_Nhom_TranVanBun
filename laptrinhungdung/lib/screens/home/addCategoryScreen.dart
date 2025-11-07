@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../controllers/categoryProvider.dart';
 
 class AddCategoryScreen extends StatefulWidget {
@@ -20,7 +21,9 @@ class _AddCategoryScreenState
 
   Color _selectedColor = Colors.blueAccent;
   IconData _selectedIcon = Icons.category;
-  String _selectedType = "Chi tiêu";
+
+  // ✅ Không dùng .tr() ở đây, để tránh lỗi Dropdown
+  final String _selectedType = "expense";
 
   final _colorOptions = [
     Colors.blueAccent,
@@ -70,7 +73,9 @@ class _AddCategoryScreenState
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            '✅ Đã thêm danh mục: ${newCategory.label}',
+            'added_category_message'.tr(
+              args: [newCategory.label],
+            ),
           ),
           backgroundColor: Colors.green.shade600,
           behavior: SnackBarBehavior.floating,
@@ -100,9 +105,9 @@ class _AddCategoryScreenState
         foregroundColor: Colors.white,
         centerTitle: true,
         elevation: 3,
-        title: const Text(
-          "Thêm danh mục mới",
-          style: TextStyle(
+        title: Text(
+          "add_new_category".tr(),
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
@@ -117,54 +122,30 @@ class _AddCategoryScreenState
                 CrossAxisAlignment.start,
             children: [
               _buildCardSection(
-                title: "Tên danh mục",
+                title: "category_name".tr(),
                 child: _buildTextField(
                   controller: _nameController,
-                  hint: "Nhập tên danh mục...",
+                  hint: "enter_category_name"
+                      .tr(),
                   validatorMsg:
-                      "Vui lòng nhập tên danh mục",
+                      "enter_category_name_error"
+                          .tr(),
                 ),
               ),
               _buildCardSection(
-                title: "Giới hạn chi tiêu (VNĐ)",
+                title: "spending_limit".tr(),
                 child: _buildTextField(
                   controller: _limitController,
-                  hint:
-                      "Nhập số tiền giới hạn...",
+                  hint: "enter_limit_hint".tr(),
                   keyboardType:
                       TextInputType.number,
                   validatorMsg:
-                      "Vui lòng nhập số tiền tối đa hợp lệ",
+                      "enter_valid_amount_error"
+                          .tr(),
                 ),
               ),
               _buildCardSection(
-                title: "Loại danh mục",
-                child:
-                    DropdownButtonFormField<
-                      String
-                    >(
-                      value: _selectedType,
-                      items: const [
-                        DropdownMenuItem(
-                          value: "Chi tiêu",
-                          child: Text("Chi tiêu"),
-                        ),
-                        DropdownMenuItem(
-                          value: "Thu nhập",
-                          child: Text("Thu nhập"),
-                        ),
-                      ],
-                      onChanged: (value) =>
-                          setState(
-                            () => _selectedType =
-                                value!,
-                          ),
-                      decoration:
-                          _inputDecoration(),
-                    ),
-              ),
-              _buildCardSection(
-                title: "Chọn màu sắc",
+                title: "choose_color".tr(),
                 child: Wrap(
                   spacing: 10,
                   runSpacing: 10,
@@ -217,7 +198,7 @@ class _AddCategoryScreenState
                 ),
               ),
               _buildCardSection(
-                title: "Chọn biểu tượng",
+                title: "choose_icon".tr(),
                 child: SizedBox(
                   height: 70,
                   child: ListView.separated(
@@ -306,9 +287,9 @@ class _AddCategoryScreenState
                     ),
                     elevation: 4,
                   ),
-                  child: const Text(
-                    "Lưu danh mục",
-                    style: TextStyle(
+                  child: Text(
+                    "save_category".tr(),
+                    style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -372,8 +353,9 @@ class _AddCategoryScreenState
       keyboardType: keyboardType,
       decoration: _inputDecoration(hint: hint),
       validator: (value) {
-        if (value == null || value.isEmpty)
+        if (value == null || value.isEmpty) {
           return validatorMsg;
+        }
         if (keyboardType ==
                 TextInputType.number &&
             double.tryParse(
@@ -382,7 +364,7 @@ class _AddCategoryScreenState
                       .replaceAll(',', ''),
                 ) ==
                 null) {
-          return "Số tiền không hợp lệ";
+          return "invalid_amount_error".tr();
         }
         return null;
       },

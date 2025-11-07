@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../controllers/categoryProvider.dart';
-import 'package:intl/intl.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
@@ -22,9 +22,9 @@ class HistoryScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF3F6FB),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text(
-          "Lịch sử chi tiêu",
-          style: TextStyle(
+        title: Text(
+          'expense_history'.tr(),
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -34,10 +34,10 @@ class HistoryScreen extends StatelessWidget {
         elevation: 3,
       ),
       body: history.isEmpty
-          ? const Center(
+          ? Center(
               child: Text(
-                "Chưa có khoản chi tiêu nào 💤",
-                style: TextStyle(
+                'no_expense_message'.tr(),
+                style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 16,
                 ),
@@ -48,20 +48,17 @@ class HistoryScreen extends StatelessWidget {
               itemCount: history.length,
               itemBuilder: (context, index) {
                 final item = history[index];
-
-                // 🔹 Lấy danh mục tương ứng để hiển thị icon và màu
                 final category = categories
                     .firstWhere(
                       (c) => c.id == item.id,
                       orElse: () => CategoryItem(
                         id: '0',
-                        label: 'Khác',
+                        label: 'other'.tr(),
                         icon: Icons.category,
                         color:
                             Colors.grey.shade400,
                       ),
                     );
-
                 return _buildHistoryCard(
                   formatter,
                   item,

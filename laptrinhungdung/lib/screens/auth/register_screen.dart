@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../widgets/background.dart';
 import 'login_screen.dart';
 import '../../controllers/regesterController.dart';
@@ -15,6 +16,7 @@ class _RegisterScreenState
     extends State<RegisterScreen> {
   final Regestercontroller registerController =
       Regestercontroller();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,17 +71,20 @@ class _RegisterScreenState
                           CrossAxisAlignment
                               .start,
                       children: [
-                        const Center(
+                        Center(
                           child: Text(
-                            "Chào mừng bắt đầu",
-                            style: TextStyle(
-                              fontSize: 26,
-                              fontWeight:
-                                  FontWeight.bold,
-                              color: Color(
-                                0xFF1E2A78,
-                              ),
-                            ),
+                            "register_welcome"
+                                .tr(),
+                            style:
+                                const TextStyle(
+                                  fontSize: 26,
+                                  fontWeight:
+                                      FontWeight
+                                          .bold,
+                                  color: Color(
+                                    0xFF1E2A78,
+                                  ),
+                                ),
                           ),
                         ),
                         const SizedBox(
@@ -90,8 +95,8 @@ class _RegisterScreenState
                               registerController
                                   .fulllNameController,
                           decoration: _inputStyle(
-                            "Tên đầy đủ",
-                            "Nhập tên của bạn",
+                            "full_name".tr(),
+                            "full_name_hint".tr(),
                           ),
                         ),
                         const SizedBox(
@@ -105,8 +110,8 @@ class _RegisterScreenState
                               TextInputType
                                   .emailAddress,
                           decoration: _inputStyle(
-                            "Email",
-                            "Nhập email",
+                            "email_label".tr(),
+                            "email_hint".tr(),
                           ),
                         ),
                         const SizedBox(
@@ -118,8 +123,8 @@ class _RegisterScreenState
                                   .passwordController,
                           obscureText: true,
                           decoration: _inputStyle(
-                            "Mật khẩu",
-                            "Nhập mật khẩu",
+                            "password_label".tr(),
+                            "password_hint".tr(),
                           ),
                         ),
                         const SizedBox(
@@ -146,8 +151,8 @@ class _RegisterScreenState
                             ),
                             Expanded(
                               child: RichText(
-                                text: const TextSpan(
-                                  style: TextStyle(
+                                text: TextSpan(
+                                  style: const TextStyle(
                                     color: Colors
                                         .black87,
                                     fontSize:
@@ -155,13 +160,13 @@ class _RegisterScreenState
                                   ),
                                   children: [
                                     TextSpan(
-                                      text:
-                                          "Tôi đồng ý với ",
+                                      text: "agree_terms_prefix"
+                                          .tr(),
                                     ),
                                     TextSpan(
-                                      text:
-                                          "Điều khoản dịch vụ",
-                                      style: TextStyle(
+                                      text: "agree_terms_link"
+                                          .tr(),
+                                      style: const TextStyle(
                                         color: Color(
                                           0xFF1E2A78,
                                         ),
@@ -204,30 +209,32 @@ class _RegisterScreenState
                                     context,
                                   );
                             },
-                            child: const Text(
-                              "Đăng ký",
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight:
-                                    FontWeight
-                                        .bold,
-                                color:
-                                    Colors.white,
-                              ),
+                            child: Text(
+                              "sign_up".tr(),
+                              style:
+                                  const TextStyle(
+                                    fontSize: 17,
+                                    fontWeight:
+                                        FontWeight
+                                            .bold,
+                                    color: Colors
+                                        .white,
+                                  ),
                             ),
                           ),
                         ),
                         const SizedBox(
                           height: 24,
                         ),
-                        const Center(
+                        Center(
                           child: Text(
-                            "Đăng ký với",
-                            style: TextStyle(
-                              color:
-                                  Colors.black54,
-                              fontSize: 14,
-                            ),
+                            "register_with".tr(),
+                            style:
+                                const TextStyle(
+                                  color: Colors
+                                      .black54,
+                                  fontSize: 14,
+                                ),
                           ),
                         ),
                         const SizedBox(
@@ -260,12 +267,14 @@ class _RegisterScreenState
                               MainAxisAlignment
                                   .center,
                           children: [
-                            const Text(
-                              "Bạn đã có tài khoản? ",
-                              style: TextStyle(
-                                color: Colors
-                                    .black87,
-                              ),
+                            Text(
+                              "already_have_account"
+                                  .tr(),
+                              style:
+                                  const TextStyle(
+                                    color: Colors
+                                        .black87,
+                                  ),
                             ),
                             GestureDetector(
                               onTap: () {
@@ -309,9 +318,9 @@ class _RegisterScreenState
                                 cursor:
                                     SystemMouseCursors
                                         .click,
-                                child: const Text(
-                                  "Đăng nhập",
-                                  style: TextStyle(
+                                child: Text(
+                                  "sign_in".tr(),
+                                  style: const TextStyle(
                                     color: Color(
                                       0xFF1E2A78,
                                     ),
@@ -360,9 +369,11 @@ class _RegisterScreenState
           color: Colors.grey.shade300,
         ),
       ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
+      focusedBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
+        borderSide: BorderSide(
           color: Color(0xFF1E2A78),
           width: 1.6,
         ),

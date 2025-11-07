@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../widgets/background.dart';
-import '../../widgets/custom_button.dart';
 import 'register_screen.dart';
 import '../home/home_screen.dart';
 
@@ -79,17 +79,19 @@ class _LoginScreenState
                           CrossAxisAlignment
                               .start,
                       children: [
-                        const Center(
+                        Center(
                           child: Text(
-                            "Chào Mừng",
-                            style: TextStyle(
-                              fontSize: 26,
-                              fontWeight:
-                                  FontWeight.bold,
-                              color: Color(
-                                0xFF1E2A78,
-                              ),
-                            ),
+                            "welcome_back".tr(),
+                            style:
+                                const TextStyle(
+                                  fontSize: 26,
+                                  fontWeight:
+                                      FontWeight
+                                          .bold,
+                                  color: Color(
+                                    0xFF1E2A78,
+                                  ),
+                                ),
                           ),
                         ),
                         const SizedBox(
@@ -99,8 +101,8 @@ class _LoginScreenState
                           controller:
                               emailController,
                           decoration: _inputStyle(
-                            "Email",
-                            "Nhập email",
+                            "email_label".tr(),
+                            "email_hint".tr(),
                           ),
                         ),
                         const SizedBox(
@@ -113,8 +115,10 @@ class _LoginScreenState
                               _obscurePassword,
                           decoration:
                               _inputStyle(
-                                "Mật khẩu",
-                                "Nhập mật khẩu",
+                                "password_label"
+                                    .tr(),
+                                "password_hint"
+                                    .tr(),
                               ).copyWith(
                                 suffixIcon: IconButton(
                                   icon: Icon(
@@ -160,15 +164,16 @@ class _LoginScreenState
                                     0xFF1E2A78,
                                   ),
                             ),
-                            const Text(
-                              "Lưu mật khẩu",
+                            Text(
+                              "remember_me".tr(),
                             ),
                             const Spacer(),
                             GestureDetector(
                               onTap: () {},
-                              child: const Text(
-                                "Quên mật khẩu?",
-                                style: TextStyle(
+                              child: Text(
+                                "forgot_password"
+                                    .tr(),
+                                style: const TextStyle(
                                   color: Color(
                                     0xFF1E2A78,
                                   ),
@@ -232,38 +237,41 @@ class _LoginScreenState
                                 ScaffoldMessenger.of(
                                   context,
                                 ).showSnackBar(
-                                  const SnackBar(
+                                  SnackBar(
                                     content: Text(
-                                      'Email hoặc mật khẩu không đúng.',
+                                      "login_failed"
+                                          .tr(),
                                     ),
                                   ),
                                 );
                               }
                             },
-                            child: const Text(
-                              "Đăng nhập",
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight:
-                                    FontWeight
-                                        .bold,
-                                color:
-                                    Colors.white,
-                              ),
+                            child: Text(
+                              "login_button".tr(),
+                              style:
+                                  const TextStyle(
+                                    fontSize: 17,
+                                    fontWeight:
+                                        FontWeight
+                                            .bold,
+                                    color: Colors
+                                        .white,
+                                  ),
                             ),
                           ),
                         ),
                         const SizedBox(
                           height: 24,
                         ),
-                        const Center(
+                        Center(
                           child: Text(
-                            "Đăng nhập với",
-                            style: TextStyle(
-                              color:
-                                  Colors.black54,
-                              fontSize: 14,
-                            ),
+                            "login_with".tr(),
+                            style:
+                                const TextStyle(
+                                  color: Colors
+                                      .black54,
+                                  fontSize: 14,
+                                ),
                           ),
                         ),
                         const SizedBox(
@@ -296,8 +304,8 @@ class _LoginScreenState
                               MainAxisAlignment
                                   .center,
                           children: [
-                            const Text(
-                              "Bạn chưa có tài khoản? ",
+                            Text(
+                              "no_account".tr(),
                             ),
                             GestureDetector(
                               onTap: () {
@@ -341,9 +349,9 @@ class _LoginScreenState
                                 cursor:
                                     SystemMouseCursors
                                         .click,
-                                child: const Text(
-                                  "Đăng ký",
-                                  style: TextStyle(
+                                child: Text(
+                                  "sign_up".tr(),
+                                  style: const TextStyle(
                                     color: Color(
                                       0xFF1E2A78,
                                     ),

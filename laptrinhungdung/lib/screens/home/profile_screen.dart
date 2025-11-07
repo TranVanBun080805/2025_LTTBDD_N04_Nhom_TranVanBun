@@ -19,7 +19,9 @@ class SettingScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF3F6FB),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Cài đặt'),
+        title: Text(
+          'setting'.tr(),
+        ), // ✅ dùng key "setting"
         backgroundColor: const Color(0xFF3A7BD5),
         foregroundColor: Colors.white,
         centerTitle: true,
@@ -36,6 +38,7 @@ class SettingScreen extends StatelessWidget {
           crossAxisAlignment:
               CrossAxisAlignment.center,
           children: [
+            // Ảnh đại diện + nút chỉnh sửa
             Center(
               child: Stack(
                 alignment: Alignment.bottomRight,
@@ -88,6 +91,8 @@ class SettingScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
+
+            // Email hiển thị
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
@@ -124,36 +129,39 @@ class SettingScreen extends StatelessWidget {
                 ],
               ),
             ),
+
             const SizedBox(height: 30),
+
+            // Các lựa chọn cài đặt
             _buildSettingTile(
               icon: Icons.person_outline,
-              title: "Chỉnh sửa thông tin",
+              title: "edit_info".tr(), // ✅
               onTap: () {},
             ),
             _buildSettingTile(
               icon: Icons.lock_outline,
-              title: "Đổi mật khẩu",
+              title: "change_password".tr(), // ✅
               onTap: () {},
             ),
             _buildSettingTile(
               icon: Icons.notifications_none,
-              title: "Thông báo",
+              title: "notifications".tr(), // ✅
               onTap: () {},
             ),
             _buildSettingTile(
               icon: Icons.history,
-              title: "Lịch sử chi tiêu",
+              title: "expense_history".tr(), // ✅
               onTap: () {},
             ),
             _buildSettingTile(
               icon: Icons.language_rounded,
-              title: "Chọn ngôn ngữ",
+              title: "select_language".tr(), // ✅
               onTap: () =>
                   _showLanguageDialog(context),
             ),
             _buildSettingTile(
               icon: Icons.logout,
-              title: "Đăng xuất",
+              title: "logout".tr(), // ✅
               color: Colors.redAccent,
               onTap: () {
                 Navigator.pushAndRemoveUntil(
@@ -172,6 +180,7 @@ class SettingScreen extends StatelessWidget {
     );
   }
 
+  // 🔄 Dialog chọn ngôn ngữ
   void _showLanguageDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -179,7 +188,9 @@ class SettingScreen extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),
         ),
-        title: const Text("Chọn ngôn ngữ"),
+        title: Text(
+          "select_language".tr(),
+        ), // ✅ dịch tiêu đề
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -205,7 +216,7 @@ class SettingScreen extends StatelessWidget {
                 "🇬🇧",
                 style: TextStyle(fontSize: 24),
               ),
-              title: const Text("Tiếng Anh"),
+              title: const Text("English"),
               onTap: () {
                 context.setLocale(
                   const Locale('en', 'US'),
@@ -213,7 +224,7 @@ class SettingScreen extends StatelessWidget {
                 Navigator.pop(ctx);
                 _showSnack(
                   context,
-                  "Đã chuyển sang Tiếng Anh",
+                  "Switched to English 🇬🇧",
                 );
               },
             ),
@@ -223,6 +234,7 @@ class SettingScreen extends StatelessWidget {
     );
   }
 
+  // 🧾 Snack thông báo đổi ngôn ngữ
   void _showSnack(
     BuildContext context,
     String message,
@@ -236,6 +248,7 @@ class SettingScreen extends StatelessWidget {
     );
   }
 
+  // 🔧 Hàm tạo tile cài đặt
   Widget _buildSettingTile({
     required IconData icon,
     required String title,

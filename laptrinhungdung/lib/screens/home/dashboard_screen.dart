@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../controllers/dashBoardController.dart';
 import '../../controllers/incomeProvider.dart';
 import '../../controllers/categoryProvider.dart';
@@ -56,9 +56,9 @@ class DashboardScreen extends StatelessWidget {
           crossAxisAlignment:
               CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Tổng quan tài chính 💰",
-              style: TextStyle(
+            Text(
+              "financial_overview".tr(),
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w800,
                 color: Color(0xFF1E355B),
@@ -92,9 +92,9 @@ class DashboardScreen extends StatelessWidget {
                 crossAxisAlignment:
                     CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Số dư hiện tại",
-                    style: TextStyle(
+                  Text(
+                    "current_balance".tr(),
+                    style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 16,
                     ),
@@ -117,7 +117,7 @@ class DashboardScreen extends StatelessWidget {
                           context: context,
                           icon: Icons
                               .arrow_downward_rounded,
-                          label: "Thu nhập",
+                          label: "income".tr(),
                           value: formatter.format(
                             totalIncome,
                           ),
@@ -136,7 +136,7 @@ class DashboardScreen extends StatelessWidget {
                           context: context,
                           icon: Icons
                               .arrow_upward_rounded,
-                          label: "Chi tiêu",
+                          label: "expense".tr(),
                           value: formatter.format(
                             totalExpense,
                           ),
@@ -156,9 +156,9 @@ class DashboardScreen extends StatelessWidget {
               progress,
             ),
             const SizedBox(height: 30),
-            const Text(
-              "Danh mục thu / chi",
-              style: TextStyle(
+            Text(
+              "categories".tr(),
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: Color(0xFF1E355B),
@@ -312,9 +312,9 @@ class DashboardScreen extends StatelessWidget {
         crossAxisAlignment:
             CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Giới hạn chi tiêu tháng này",
-            style: TextStyle(
+          Text(
+            "monthly_spending_limit".tr(),
+            style: const TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.w700,
               color: Color(0xFF1E355B),
@@ -346,7 +346,7 @@ class DashboardScreen extends StatelessWidget {
                 MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${(progress * 100).toStringAsFixed(0)}% đã dùng",
+                "${(progress * 100).toStringAsFixed(0)}% ${"used".tr()}",
                 style: const TextStyle(
                   fontSize: 15,
                   color: Colors.grey,
@@ -514,14 +514,16 @@ class DashboardScreen extends StatelessWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text(
-          "Xóa danh mục",
-          style: TextStyle(
+        title: Text(
+          "delete_category".tr(),
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
         content: Text(
-          "Bạn có chắc muốn xóa danh mục '${cat.label}' không?",
+          "delete_category_confirm".tr(
+            args: [cat.label],
+          ),
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),
@@ -529,7 +531,7 @@ class DashboardScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text("Hủy"),
+            child: Text("cancel".tr()),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -548,7 +550,9 @@ class DashboardScreen extends StatelessWidget {
               ).showSnackBar(
                 SnackBar(
                   content: Text(
-                    "Đã xóa danh mục '${cat.label}'",
+                    "deleted_category_message".tr(
+                      args: [cat.label],
+                    ),
                   ),
                   backgroundColor:
                       Colors.redAccent,
@@ -566,7 +570,7 @@ class DashboardScreen extends StatelessWidget {
                 ),
               );
             },
-            child: const Text("Xóa"),
+            child: Text("delete".tr()),
           ),
         ],
       ),
