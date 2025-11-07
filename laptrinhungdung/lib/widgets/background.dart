@@ -107,7 +107,6 @@ class _WavesPainter extends CustomPainter {
 
 class _Bubble extends StatelessWidget {
   const _Bubble({
-    super.key,
     this.left,
     this.right,
     this.top,

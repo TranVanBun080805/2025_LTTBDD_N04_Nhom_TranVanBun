@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laptrinhungdung/controllers/incomeProvider.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../controllers/incomeProvider.dart';
 import '../controllers/categoryProvider.dart';
 
@@ -41,9 +41,7 @@ class _AddExpenseScreenState
     return Scaffold(
       backgroundColor: const Color(0xFFF3F6FB),
       appBar: AppBar(
-        title: const Text(
-          "Thêm khoản chi tiêu 💸",
-        ),
+        title: Text("add_expense".tr()),
         backgroundColor: const Color(0xFF3A7BD5),
         foregroundColor: Colors.white,
         centerTitle: true,
@@ -57,7 +55,7 @@ class _AddExpenseScreenState
             crossAxisAlignment:
                 CrossAxisAlignment.start,
             children: [
-              // 🔹 Hiển thị thông tin danh mục
+              // 🔹 Danh mục đang chọn
               Container(
                 padding: const EdgeInsets.all(18),
                 margin: const EdgeInsets.only(
@@ -96,12 +94,15 @@ class _AddExpenseScreenState
                             CrossAxisAlignment
                                 .start,
                         children: [
-                          const Text(
-                            "Đang thêm vào danh mục:",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
-                            ),
+                          Text(
+                            "adding_to_category"
+                                .tr(),
+                            style:
+                                const TextStyle(
+                                  fontSize: 14,
+                                  color:
+                                      Colors.grey,
+                                ),
                           ),
                           const SizedBox(
                             height: 4,
@@ -123,9 +124,9 @@ class _AddExpenseScreenState
                 ),
               ),
 
-              const Text(
-                "Số tiền chi (VNĐ):",
-                style: TextStyle(
+              Text(
+                "expense_amount".tr(),
+                style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
                   color: Color(0xFF1E355B),
@@ -133,13 +134,12 @@ class _AddExpenseScreenState
               ),
               const SizedBox(height: 10),
 
-              // 🧮 Ô nhập số tiền
               TextFormField(
                 controller: _amountController,
                 keyboardType:
                     TextInputType.number,
                 decoration: InputDecoration(
-                  hintText: "Ví dụ: 250000",
+                  hintText: "example_amount".tr(),
                   prefixIcon: const Icon(
                     Icons.attach_money_rounded,
                     color: Color(0xFF3A7BD5),
@@ -155,7 +155,8 @@ class _AddExpenseScreenState
                 validator: (value) {
                   if (value == null ||
                       value.isEmpty) {
-                    return 'Vui lòng nhập số tiền chi tiêu';
+                    return 'enter_amount_error'
+                        .tr();
                   }
                   final num? parsed =
                       num.tryParse(
@@ -165,7 +166,8 @@ class _AddExpenseScreenState
                       );
                   if (parsed == null ||
                       parsed <= 0) {
-                    return 'Số tiền không hợp lệ';
+                    return 'invalid_amount_error'
+                        .tr();
                   }
                   return null;
                 },
@@ -173,10 +175,9 @@ class _AddExpenseScreenState
 
               const SizedBox(height: 25),
 
-              // 📝 Ô nhập mô tả / mục đích
-              const Text(
-                "Mục đích chi tiêu:",
-                style: TextStyle(
+              Text(
+                "expense_purpose".tr(),
+                style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
                   color: Color(0xFF1E355B),
@@ -188,8 +189,8 @@ class _AddExpenseScreenState
                     _descriptionController,
                 maxLines: 2,
                 decoration: InputDecoration(
-                  hintText:
-                      "Ví dụ: Mua đồ ăn, trả tiền điện, đi chơi,...",
+                  hintText: "example_description"
+                      .tr(),
                   prefixIcon: const Icon(
                     Icons.notes_rounded,
                     color: Color(0xFF3A7BD5),
@@ -205,7 +206,8 @@ class _AddExpenseScreenState
                 validator: (value) {
                   if (value == null ||
                       value.isEmpty) {
-                    return 'Vui lòng nhập mục đích chi tiêu';
+                    return 'enter_purpose_error'
+                        .tr();
                   }
                   return null;
                 },
@@ -213,10 +215,8 @@ class _AddExpenseScreenState
 
               const SizedBox(height: 40),
 
-              // 🔘 Hàng nút hành động
               Row(
                 children: [
-                  // ❌ Nút hủy
                   Expanded(
                     child: OutlinedButton.icon(
                       onPressed: () =>
@@ -225,9 +225,9 @@ class _AddExpenseScreenState
                         Icons.close_rounded,
                         color: Color(0xFF3A7BD5),
                       ),
-                      label: const Text(
-                        "Hủy",
-                        style: TextStyle(
+                      label: Text(
+                        "cancel".tr(),
+                        style: const TextStyle(
                           fontSize: 16,
                           color: Color(
                             0xFF3A7BD5,
@@ -256,8 +256,6 @@ class _AddExpenseScreenState
                     ),
                   ),
                   const SizedBox(width: 14),
-
-                  // ✅ Nút xác nhận
                   Expanded(
                     child: ElevatedButton.icon(
                       icon: const Icon(
@@ -265,9 +263,9 @@ class _AddExpenseScreenState
                             .check_circle_outline_rounded,
                         color: Colors.white,
                       ),
-                      label: const Text(
-                        "Xác nhận",
-                        style: TextStyle(
+                      label: Text(
+                        "confirm".tr(),
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight:
                               FontWeight.w600,
@@ -327,8 +325,6 @@ class _AddExpenseScreenState
                               );
 
                           Navigator.pop(context);
-
-                          
                         }
                       },
                     ),
