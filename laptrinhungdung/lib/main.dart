@@ -16,18 +16,10 @@ void main() async {
         Locale('en', 'US'),
         Locale('vi', 'VN'),
       ],
-      path:
-          'lib/translations', // ✅ đường dẫn chứa file ngôn ngữ
-      fallbackLocale: const Locale(
-        'vi',
-        'VN',
-      ), // 🔹 Ngôn ngữ mặc định
-      startLocale: const Locale(
-        'vi',
-        'VN',
-      ), // 🔹 App khởi động với Tiếng Việt
-      saveLocale:
-          true, // 🔹 Ghi nhớ lựa chọn của người dùng
+      path: 'assets/translations',
+      fallbackLocale: const Locale('vi', 'VN'),
+      startLocale: const Locale('vi', 'VN'),
+      saveLocale: true,
       child: const MyApp(),
     ),
   );
