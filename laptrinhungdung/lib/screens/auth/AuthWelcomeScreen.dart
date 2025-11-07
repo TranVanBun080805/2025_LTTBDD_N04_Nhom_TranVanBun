@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'login_screen.dart';
 import 'register_screen.dart';
 import '../../widgets/background.dart';
@@ -46,6 +47,38 @@ class AuthWelcomeScreen extends StatelessWidget {
       body: WaveBackground(
         child: Stack(
           children: [
+            Positioned(
+              top: 20,
+              right: 16,
+              child: Material(
+                color: Colors.transparent,
+                child: PopupMenuButton<Locale>(
+                  icon: const Icon(
+                    Icons.language,
+                    color: Colors.white,
+                    size: 28,
+                  ),
+                  onSelected:
+                      (Locale locale) async {
+                        await context.setLocale(
+                          locale,
+                        );
+                      },
+                  itemBuilder: (context) => [
+                    const PopupMenuItem(
+                      value: Locale('vi', 'VN'),
+                      child: Text(
+                        "🇻🇳 Tiếng Việt",
+                      ),
+                    ),
+                    const PopupMenuItem(
+                      value: Locale('en', 'US'),
+                      child: Text("🇺🇸 English"),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Align(
               alignment: const Alignment(
                 0,
@@ -55,7 +88,7 @@ class AuthWelcomeScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'Chào Mừng',
+                    'welcome_title'.tr(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize:
@@ -67,7 +100,7 @@ class AuthWelcomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Lập quản lý chi tiêu\nTiết kiệm cho bản thân mình',
+                    'welcome_subtitle'.tr(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize:
@@ -194,9 +227,9 @@ class _BottomSwitcherState
                         : Colors.transparent,
                   ),
                   alignment: Alignment.center,
-                  child: const Text(
-                    'Đăng Nhập',
-                    style: TextStyle(
+                  child: Text(
+                    'sign_in'.tr(),
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
@@ -242,7 +275,7 @@ class _BottomSwitcherState
                   ),
                   alignment: Alignment.center,
                   child: Text(
-                    'Đăng Ký',
+                    'sign_up'.tr(),
                     style: TextStyle(
                       color: _hoverSignUp
                           ? const Color(
